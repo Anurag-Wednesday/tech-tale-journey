@@ -1,20 +1,9 @@
 
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+import CaseStudy from "@/components/CaseStudy";
 
 const Index = () => {
-  const navigate = useNavigate();
-  
-  useEffect(() => {
-    console.log("Redirecting to case studies");
-    navigate("/case-studies");
-  }, [navigate]);
-  
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-stone-50">
-      <p className="text-stone-800 text-lg">Redirecting to case studies...</p>
-    </div>
-  );
+  return <CaseStudy />;
 };
 
 export default Index;
