@@ -6,6 +6,7 @@ const Index = () => {
   const navigate = useNavigate();
   
   useEffect(() => {
+    console.log("Redirecting to case studies");
     navigate("/case-studies");
   }, [navigate]);
   

@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import SectionContainer from "@/components/SectionContainer";
@@ -15,6 +15,12 @@ const navigationItems = [
 ];
 
 const CaseStudyHub: React.FC = () => {
+  // Add debugging
+  useEffect(() => {
+    console.log("Case studies:", caseStudies);
+    console.log("Rendering CaseStudyHub component");
+  }, []);
+
   return (
     <div className="min-h-screen bg-stone-50">
       <Navigation items={navigationItems} />
@@ -23,18 +29,24 @@ const CaseStudyHub: React.FC = () => {
         <div className="max-w-screen-xl mx-auto">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-4xl md:text-5xl font-display font-bold mb-6 text-stone-900 reveal-on-scroll">
-              {en.caseStudyHub.title}
+              {en.caseStudyHub.title || "Case Studies"}
             </h1>
             <p className="text-xl text-stone-600 reveal-on-scroll">
-              {en.caseStudyHub.subtitle}
+              {en.caseStudyHub.subtitle || "Explore our successful client projects and transformations"}
             </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-            {caseStudies.map((caseStudy) => (
-              <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
-            ))}
-          </div>
+          {caseStudies && caseStudies.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+              {caseStudies.map((caseStudy) => (
+                <CaseStudyCard key={caseStudy.id} caseStudy={caseStudy} />
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-16">
+              <p className="text-xl text-stone-600">No case studies found</p>
+            </div>
+          )}
         </div>
       </div>
     </div>
